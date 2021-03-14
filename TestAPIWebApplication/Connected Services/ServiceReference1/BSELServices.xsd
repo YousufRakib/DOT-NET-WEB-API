@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/BSELAPI.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BSELAPI.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://uat.bracsaajanexchange.com/remiterpsendapi/BSELServices.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="EncryptRequest">
+    <xs:sequence>
+      <xs:element name="_InputData" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EncryptRequest" nillable="true" type="tns:EncryptRequest" />
+  <xs:complexType name="SessionRequest">
+    <xs:sequence>
+      <xs:element name="ClientId" type="xs:int" />
+      <xs:element name="UserId" nillable="true" type="xs:string" />
+      <xs:element name="Password" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SessionRequest" nillable="true" type="tns:SessionRequest" />
+  <xs:complexType name="SessionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SessionId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SessionResponse" nillable="true" type="tns:SessionResponse" />
+  <xs:complexType name="HashCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UTR_Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SecurityKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiveAmount" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HashCodeRequest" nillable="true" type="tns:HashCodeRequest" />
+  <xs:complexType name="HashCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" type="xs:int" />
+      <xs:element minOccurs="0" name="HashCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HashCodeResponse" nillable="true" type="tns:HashCodeResponse" />
+  <xs:complexType name="Request">
+    <xs:sequence>
+      <xs:element name="ClientId" type="xs:int" />
+      <xs:element name="SessionId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Request" nillable="true" type="tns:Request" />
+  <xs:complexType name="CodeDataResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SessionResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PaymentType" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="AccountType" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="PurposeOfTransfer" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="SourceOfFund" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="OccupationType" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="Occupation" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="BeneRelation" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="DocumentCategory" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="DocumentType" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="CancelReason" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="Currency" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="Country" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="ErrorCode" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CodeDataResponse" nillable="true" type="tns:CodeDataResponse" />
+  <xs:complexType name="FieldResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FieldInfo" nillable="true">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:appinfo>
+              <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FieldResponse" nillable="true" type="tns:FieldResponse" />
+  <xs:complexType name="ArrayOfPreValidationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PreValidationRequest" nillable="true" type="tns:PreValidationRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPreValidationRequest" nillable="true" type="tns:ArrayOfPreValidationRequest" />
+  <xs:complexType name="PreValidationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HashCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientId" type="xs:int" />
+      <xs:element minOccurs="0" name="UTR_Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentType" type="xs:int" />
+      <xs:element minOccurs="0" name="Agg_Tran_Date" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReceiveAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ExchangeRate" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SendAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SendCurrency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiveCurrency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SendCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiveCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="RemitterFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterMiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterLastName_2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterDOB" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RemitterGender" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="RemitterAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterPostCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterMobileCountryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterMobileNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterPlaceOfBirth" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterNationality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterAccountNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterAccountType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RemitterSwiftCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterBranchCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterOccupationType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RemitterOccupation" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RemitterReceiverRelation" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ReceiverId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="ReceiverFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverMiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverLastName_2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverDOB" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReceiverOccupationType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ReceiverOccupation" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ReceiverFatherName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverMobileCountryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverMobileNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverAccountNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverAccType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ReceiverBankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverBankSwiftCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverBranchName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverBranchCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverBranchAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverCollectionBankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverCollectionBankSwiftCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverGender" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="ReceiverZipCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverWalletID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverWalletNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PurposeOfTransfer" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SourceOfFund" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SubAgentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubAgentID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AggSubAgentUser" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NoOfPSP" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="PSPList" nillable="true" type="tns:ArrayOfPSP" />
+      <xs:element minOccurs="0" name="PspTranDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsModificationRequired" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RemitterDocs" nillable="true" type="tns:ArrayOfRemitterDocument" />
+      <xs:element minOccurs="0" name="ReceiverDocs" nillable="true" type="tns:ArrayOfReceiverDocument" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PreValidationRequest" nillable="true" type="tns:PreValidationRequest" />
+  <xs:complexType name="ArrayOfPSP">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PSP" nillable="true" type="tns:PSP" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPSP" nillable="true" type="tns:ArrayOfPSP" />
+  <xs:complexType name="PSP">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SwiftCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PSP" nillable="true" type="tns:PSP" />
+  <xs:complexType name="ArrayOfRemitterDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RemitterDocument" nillable="true" type="tns:RemitterDocument" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRemitterDocument" nillable="true" type="tns:ArrayOfRemitterDocument" />
+  <xs:complexType name="RemitterDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RemitterDocCatagory" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RemitterDocType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RemitterDocuNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterDocIssueDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RemitterDocExpiryDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RemitterDocIssuedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterDocFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterDocFileContent" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RemitterDocument" nillable="true" type="tns:RemitterDocument" />
+  <xs:complexType name="ArrayOfReceiverDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReceiverDocument" nillable="true" type="tns:ReceiverDocument" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReceiverDocument" nillable="true" type="tns:ArrayOfReceiverDocument" />
+  <xs:complexType name="ReceiverDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ReceiverDocCatagory" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ReceiverDocType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ReceiverDocuNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverDocIssueDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReceiverDocExpiryDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReceiverDocIssuedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverDocFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverDocFileContent" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReceiverDocument" nillable="true" type="tns:ReceiverDocument" />
+  <xs:complexType name="ArrayOfPreValidationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PreValidationResponse" nillable="true" type="tns:PreValidationResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPreValidationResponse" nillable="true" type="tns:ArrayOfPreValidationResponse" />
+  <xs:complexType name="PreValidationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionReference" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PreValidationResponse" nillable="true" type="tns:PreValidationResponse" />
+  <xs:complexType name="TransactionStatusRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientId" type="xs:int" />
+      <xs:element minOccurs="0" name="SessionId" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="UTR_NumberList" nillable="true" type="q1:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TransactionStatusRequest" nillable="true" type="tns:TransactionStatusRequest" />
+  <xs:complexType name="ArrayOfTransactionStatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TransactionStatusResponse" nillable="true" type="tns:TransactionStatusResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTransactionStatusResponse" nillable="true" type="tns:ArrayOfTransactionStatusResponse" />
+  <xs:complexType name="TransactionStatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Rate" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ReceiverAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ReceiverName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResponseCode" type="xs:int" />
+      <xs:element minOccurs="0" name="ResponseText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SendAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UTR_Number" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TransactionStatusResponse" nillable="true" type="tns:TransactionStatusResponse" />
+  <xs:complexType name="TransactionReportRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientId" type="xs:int" />
+      <xs:element minOccurs="0" name="ReportType" type="xs:int" />
+      <xs:element minOccurs="0" name="FromDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ToDate" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TransactionReportRequest" nillable="true" type="tns:TransactionReportRequest" />
+  <xs:complexType name="TransactionReportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReportData" nillable="true">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:appinfo>
+              <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TransactionReportResponse" nillable="true" type="tns:TransactionReportResponse" />
+  <xs:complexType name="ArrayOfMoneyTransfer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MoneyTransfer" nillable="true" type="tns:MoneyTransfer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMoneyTransfer" nillable="true" type="tns:ArrayOfMoneyTransfer" />
+  <xs:complexType name="MoneyTransfer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HashCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientId" type="xs:int" />
+      <xs:element minOccurs="0" name="UTR_Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentType" type="xs:int" />
+      <xs:element minOccurs="0" name="Agg_Tran_Date" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReceiveAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ExchangeRate" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SendAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SendCurrency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiveCurrency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SendCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiveCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="RemitterFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterMiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterLastName_2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterDOB" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RemitterGender" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="RemitterAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterPostCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterMobileCountryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterMobileNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterPlaceOfBirth" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterNationality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterAccountNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterAccountType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RemitterSwiftCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterBranchCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemitterOccupationType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RemitterOccupation" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RemitterReceiverRelation" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ReceiverId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="ReceiverFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverMiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverLastName_2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverDOB" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReceiverOccupationType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ReceiverOccupation" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ReceiverFatherName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverMobileCountryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverMobileNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverAccountNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverAccType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ReceiverBankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverBankSwiftCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverBranchName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverBranchCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverBranchAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverCollectionBankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverCollectionBankSwiftCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverGender" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="ReceiverZipCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverWalletID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverWalletNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PurposeOfTransfer" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SourceOfFund" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SubAgentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubAgentID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AggSubAgentUser" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NoOfPSP" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="PSPList" nillable="true" type="tns:ArrayOfPSP" />
+      <xs:element minOccurs="0" name="PspTranDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsModificationRequired" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RemitterDocs" nillable="true" type="tns:ArrayOfRemitterDocument" />
+      <xs:element minOccurs="0" name="ReceiverDocs" nillable="true" type="tns:ArrayOfReceiverDocument" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MoneyTransfer" nillable="true" type="tns:MoneyTransfer" />
+  <xs:complexType name="ArrayOfMoneytransferResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MoneytransferResponse" nillable="true" type="tns:MoneytransferResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMoneytransferResponse" nillable="true" type="tns:ArrayOfMoneytransferResponse" />
+  <xs:complexType name="MoneytransferResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BSELReferenceList" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MoneytransferResponse" nillable="true" type="tns:MoneytransferResponse" />
+  <xs:complexType name="ArrayOfRemitterDocumentRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RemitterDocumentRequest" nillable="true" type="tns:RemitterDocumentRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRemitterDocumentRequest" nillable="true" type="tns:ArrayOfRemitterDocumentRequest" />
+  <xs:complexType name="RemitterDocumentRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RemitterDocument">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RemitterId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UTR_Number" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsModifyRequired" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RemitterDocumentRequest" nillable="true" type="tns:RemitterDocumentRequest" />
+  <xs:complexType name="ArrayOfDocumentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DocumentResponse" nillable="true" type="tns:DocumentResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDocumentResponse" nillable="true" type="tns:ArrayOfDocumentResponse" />
+  <xs:complexType name="DocumentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentResponse" nillable="true" type="tns:DocumentResponse" />
+  <xs:complexType name="ArrayOfReceiverDocumentRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReceiverDocumentRequest" nillable="true" type="tns:ReceiverDocumentRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReceiverDocumentRequest" nillable="true" type="tns:ArrayOfReceiverDocumentRequest" />
+  <xs:complexType name="ReceiverDocumentRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReceiverDocument">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ReceiverId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UTR_Number" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsModifyRequired" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReceiverDocumentRequest" nillable="true" type="tns:ReceiverDocumentRequest" />
+  <xs:complexType name="MobileWhiteListRequest">
+    <xs:sequence>
+      <xs:element name="CountryCode" nillable="true" type="xs:string" />
+      <xs:element name="Mobile" nillable="true" type="xs:string" />
+      <xs:element name="ClientId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MobileWhiteListRequest" nillable="true" type="tns:MobileWhiteListRequest" />
+  <xs:complexType name="MobileWhiteListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MobileWhiteListResponse" nillable="true" type="tns:MobileWhiteListResponse" />
+  <xs:complexType name="AmendRequest">
+    <xs:sequence>
+      <xs:element name="ClientId" type="xs:int" />
+      <xs:element name="UTR_Number" nillable="true" type="xs:string" />
+      <xs:element name="ReceiverFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverMiddleName" nillable="true" type="xs:string" />
+      <xs:element name="ReceiverLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverLastName_2" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AmendRequest" nillable="true" type="tns:AmendRequest" />
+  <xs:complexType name="AmendResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AmendResponse" nillable="true" type="tns:AmendResponse" />
+  <xs:complexType name="CancelRequest">
+    <xs:sequence>
+      <xs:element name="ClientId" type="xs:int" />
+      <xs:element name="UTR_Number" nillable="true" type="xs:string" />
+      <xs:element name="RemitterDOB" nillable="true" type="xs:string" />
+      <xs:element name="cancelReason" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CancelRequest" nillable="true" type="tns:CancelRequest" />
+  <xs:complexType name="SendCancelResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SendCancelResponse" nillable="true" type="tns:SendCancelResponse" />
+  <xs:complexType name="AgentProfileRequest">
+    <xs:sequence>
+      <xs:element name="ClientId" type="xs:int" />
+      <xs:element name="SessionId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AgentProfileRequest" nillable="true" type="tns:AgentProfileRequest" />
+  <xs:complexType name="AgentProfileResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AgentProfile" nillable="true">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:appinfo>
+              <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AgentProfileResponse" nillable="true" type="tns:AgentProfileResponse" />
+  <xs:complexType name="BankRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BankRequest" nillable="true" type="tns:BankRequest" />
+  <xs:complexType name="BankResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SessionResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BankDetals" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BankResponse" nillable="true" type="tns:BankResponse" />
+  <xs:complexType name="BankBranchRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientId" type="xs:int" />
+      <xs:element minOccurs="0" name="BankId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BankBranchRequest" nillable="true" type="tns:BankBranchRequest" />
+  <xs:complexType name="BankBranchResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SessionResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BranchDetails" nillable="true">
+            <xs:complexType>
+              <xs:annotation>
+                <xs:appinfo>
+                  <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                </xs:appinfo>
+              </xs:annotation>
+              <xs:sequence>
+                <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BankBranchResponse" nillable="true" type="tns:BankBranchResponse" />
+  <xs:complexType name="TitleFetchingRequest">
+    <xs:sequence>
+      <xs:element name="ClientId" nillable="true" type="xs:string" />
+      <xs:element name="SessionId" nillable="true" type="xs:string" />
+      <xs:element name="PayingAgentId" nillable="true" type="xs:string" />
+      <xs:element name="AccountNo" nillable="true" type="xs:string" />
+      <xs:element name="AccountName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TitleFetchingRequest" nillable="true" type="tns:TitleFetchingRequest" />
+  <xs:complexType name="TitleFetchingResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TitleFetchingResponse" nillable="true" type="tns:TitleFetchingResponse" />
+</xs:schema>
